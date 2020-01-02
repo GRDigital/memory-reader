@@ -20,6 +20,9 @@ pub struct FFIResult<T> {
 #[allow(clippy::missing_safety_doc)]
 pub unsafe extern "C" fn free_str(ptr: *mut c_char) { let _ = CString::from_raw(ptr); }
 
+// It's unlikely that you'll have absolute offsets
+// the array of offsets passed is a pointer chain, ending in a value
+// this sort of mimics Cheat Engine's "pointer" address type
 #[no_mangle]
 #[allow(clippy::missing_safety_doc)]
 #[must_use]
