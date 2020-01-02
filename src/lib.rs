@@ -2,12 +2,12 @@
 
 mod read_memory;
 
+use anyhow::Context;
+pub use read_memory::*;
 use std::{
 	ffi::{CStr, CString},
 	os::raw::c_char,
 };
-pub use read_memory::*;
-use anyhow::Context;
 
 #[repr(C)]
 #[derive(Debug)]
@@ -18,9 +18,7 @@ pub struct FFIResult<T> {
 
 #[no_mangle]
 #[allow(clippy::missing_safety_doc)]
-pub unsafe extern "C" fn free_str(ptr: *mut c_char) {
-	let _ = CString::from_raw(ptr);
-}
+pub unsafe extern "C" fn free_str(ptr: *mut c_char) { let _ = CString::from_raw(ptr); }
 
 #[no_mangle]
 #[allow(clippy::missing_safety_doc)]

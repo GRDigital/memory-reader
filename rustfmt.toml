@@ -1,19 +1,64 @@
-required_version = "1.0.1"
-unstable_features = true
+# commented out implies  default
+# indented items are non-default, indented so they're more convenient to comment out if needed
 
-hard_tabs = true
-imports_indent = "Block"
-match_block_trailing_comma = true
-imports_layout = "HorizontalVertical"
-merge_imports = true
-max_width = 140
-reorder_impl_items = true
-# report_todo = "Always"
-# report_fixme = "Always"
-use_field_init_shorthand = true
-use_try_shorthand = true
+required_version = "1.4.11"
+unstable_features = true
 edition = "2018"
-blank_lines_upper_bound = 1
 newline_style = "Unix"
-merge_derives = true
-binop_separator = "Back"
+
+# indent_style
+	use_small_heuristics = "Max"
+# binop_separator
+# combine_control_expr
+# comment_width
+	condense_wildcard_suffixes = true
+# control_brace_style
+# disable_all_formatting
+	# error_on_line_overflow = true
+	# error_on_unformatted = true
+# fn_args_layout
+# brace_style
+# empty_item_single_line
+# enum_discrim_align_threshold
+	fn_single_line = true
+# where_single_line
+# force_explicit_abi
+	format_strings = true
+# format_macro_matchers
+	format_macro_bodies = false
+	hard_tabs = true
+# imports_ident
+# imports_layout
+	merge_imports = true
+	match_block_trailing_comma = true
+	max_width = 140
+# merge_derives
+# force_multiline_blocks
+# remove_nested_parens
+# reorder_imports
+# reorder_modules
+	reorder_impl_items = true
+	# report_todo = "Always"
+	# report_fixme = "Always"
+# skip_children
+# space_after_colon
+# space_before_colon
+# struct_field_align_threshold
+# spaces_around_ranges
+# struct_lit_single_line
+# tab_spaces
+# trailing_comma
+# trailing_semicolon
+# type_punctuation_density
+	use_field_init_shorthand = true
+	use_try_shorthand = true
+version = "Two"
+# format_code_in_doc_comment
+# wrap_comments
+# match_arm_blocks
+	overflow_delimited_expr = true
+# blank_lines_upper_bound
+# blank_lines_lower_bound
+# hide_parse_errors
+# color
+	inline_attribute_width = 120

@@ -96,9 +96,7 @@ impl Module {
 		}
 	}
 
-	pub fn new(process_name: &str, dll: &str) -> anyhow::Result<Self> {
-		Self::from_pid(get_pid(process_name)?, dll)
-	}
+	pub fn new(process_name: &str, dll: &str) -> anyhow::Result<Self> { Self::from_pid(get_pid(process_name)?, dll) }
 }
 
 impl Drop for Module {
@@ -113,10 +111,6 @@ pub fn read_mem<T: Default + Copy + Sized>(pid: u32, address: usize) -> anyhow::
 	let buffer: *mut T = &mut Default::default();
 	unsafe {
 		let success = Toolhelp32ReadProcessMemory(pid, address as *const c_void, buffer as *mut c_void, std::mem::size_of::<T>(), &mut 0);
-		if success == 1 {
-			Ok(*buffer)
-		} else {
-			Err(anyhow::anyhow!("can't read"))
-		}
+		if success == 1 { Ok(*buffer) } else { Err(anyhow::anyhow!("can't read")) }
 	}
 }
