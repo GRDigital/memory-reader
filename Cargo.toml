@@ -1,0 +1,15 @@
+[package]
+name = "memory-reader"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+winapi = { version = "0.3", features = ["tlhelp32", "handleapi", "impl-default", "impl-debug"] }
+scopeguard = "1"
+libc = "0.2"
+serde = { version = "1", features = ["derive"] }
+anyhow = "1"
+widestring = "0.4"
+
+[lib]
+crate-type = ["cdylib"]
