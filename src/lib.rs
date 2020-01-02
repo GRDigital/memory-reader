@@ -25,15 +25,15 @@ pub unsafe extern "C" fn free_str(ptr: *mut c_char) { let _ = CString::from_raw(
 #[must_use]
 pub unsafe extern "C" fn read_i32(
 	process_name_raw: *const c_char,
-	dll_raw: *const c_char,
+	module_name_raw: *const c_char,
 	offsets_ptr: *const usize,
 	offsets_len: usize,
 ) -> FFIResult<i32> {
 	let res: anyhow::Result<_> = try {
 		let process_name = CStr::from_ptr(process_name_raw).to_str()?;
-		let dll = CStr::from_ptr(dll_raw).to_str()?;
+		let module_name = CStr::from_ptr(module_name_raw).to_str()?;
 		let offsets = std::slice::from_raw_parts(offsets_ptr, offsets_len);
-		let module = Module::new(process_name, dll)?;
+		let module = Module::new(process_name, module_name)?;
 
 		// TODO: maybe nicer?
 		let (first_offset, tail): (&usize, &[usize]) = offsets.split_first().context("no first offset")?;

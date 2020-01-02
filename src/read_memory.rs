@@ -62,7 +62,7 @@ pub struct Module {
 }
 
 impl Module {
-	pub fn from_pid(pid: u32, dll: &str) -> anyhow::Result<Self> {
+	pub fn from_pid(pid: u32, module_name: &str) -> anyhow::Result<Self> {
 		let process_snapshot: HANDLE = unsafe { CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, pid) };
 
 		let mut module_entry = MODULEENTRY32W::default();
@@ -76,9 +76,9 @@ impl Module {
 		}
 
 		loop {
-			let module_name = widestring::U16Str::from_slice(&module_entry.szModule).to_string_lossy();
+			let current_module_name = widestring::U16Str::from_slice(&module_entry.szModule).to_string_lossy();
 
-			if module_name == dll {
+			if current_module_name == module_name {
 				return Ok(Self {
 					pid,
 					base_address: module_entry.modBaseAddr as usize,
@@ -96,7 +96,7 @@ impl Module {
 		}
 	}
 
-	pub fn new(process_name: &str, dll: &str) -> anyhow::Result<Self> { Self::from_pid(get_pid(process_name)?, dll) }
+	pub fn new(process_name: &str, module_name: &str) -> anyhow::Result<Self> { Self::from_pid(get_pid(process_name)?, module_name) }
 }
 
 impl Drop for Module {
